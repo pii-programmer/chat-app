@@ -11,9 +11,16 @@
     </div>
     <div class='chat-room-form__field'>
       <div class='chat-room-form__field--left'>
-        <label class='chat-room-form__label' for='chat_room_チャットメンバー'>チャットメンバー</label>
+        <label class='chat-room-form__label' for='chat_room_チャットメンバー'>チャットメンバー1</label>
+        <label class='chat-room-form__label' for='chat_room_チャットメンバー'>チャットメンバー2</label>
       </div>
       <div class='chat-room-form__field--right'>
+        <select name="room[user_ids][]">
+          <option value="">チャットするユーザーを選択してください</option>
+            <% User.where.not(id: current_user.id).each do |user| %>
+              <option value=<%= user.id %>><%= user.name %></option>
+            <% end %>
+        </select>
         <select name="room[user_ids][]">
           <option value="">チャットするユーザーを選択してください</option>
             <% User.where.not(id: current_user.id).each do |user| %>
